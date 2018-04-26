@@ -1,0 +1,36 @@
+<section class="row featured-post-carousel">
+  <center>
+    <div class="item post">
+      <img src="http://placehold.it/1970x500" alt="" class="img-responsive main-bg">
+    </div>
+  </center>
+</section>
+<% if user_signed_in? %>
+<section class="row content-wrap">
+    <div class="container">
+        <div class="row" id="post-masonry">
+            <article class="col-sm-10 post post-masonry post-format-image">
+                <div class="post-wrapper row">
+                    <div class="post-excerpt row">
+                        <h1 class="post-title">
+                          Editando publicacion
+                        </h1>
+                        <%= render 'form', publication: @publication %>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <%= link_to 'Show', @publication,  :class=>"btn btn-default" %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </article>
+          </div>
+        </div>
+</section>
+<%else%>
+<section class="row content-wrap">
+  <center>
+    <h2 class="taxonomy">Lo sentimos,<i> No cuentas con los permisos necesarios para esta opcion.</i></h5>
+  </center>
+</section>
+<%end%>

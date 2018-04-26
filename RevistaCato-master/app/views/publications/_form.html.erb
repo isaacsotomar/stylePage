@@ -1,0 +1,72 @@
+<%= form_with(model: publication, local: true) do |form| %>
+  <% if publication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+
+      <ul>
+      <% publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <form class="form-horizontal">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
+    <div class="col-sm-10">
+      <%= form.text_field :subtitle, id: :publication_subtitle, :class=>"form-control" ,:placeholder=>"Titulo" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Descripcion</label>
+    <div class="col-sm-10">
+      <%= form.text_area :description, id: :publication_description , :class=>"form-control" ,:placeholder=>"Descripcion", :rows=>"3" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Destacado</label>
+    <div class="col-sm-10">
+      <%= form.check_box  :principal, id: :publication_principal %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Imagen </label>
+    <%= form.file_field :image, class:"btn btn-default"%>
+    <div id="image_preview" style="display:none"><img id="imagePreview" src=""/></div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit  "Guardar", :class=>"btn btn-default"%>
+    </div>
+  </div>
+</form>
+<% end %>
+
+<script>
+$("#imageFile").change(function () {
+    $("#message").empty();
+    var file = this.files[0];
+    var imagefile = file.type;
+    var match = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+    if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]) || (imagefile == match[3]))) {
+        $('#previewing').attr('src', 'noimage.png');
+        $("#message").html("<p id='error'>Por favor seleccione un archivo de imagen válido.</p><span id='error_message'> Los tipos soportados son: jpg, gif y png.</span>");
+        return false;
+    }
+    else {
+        var reader = new FileReader();
+        reader.onload = imageIsLoaded;
+    }
+});
+
+  function imageIsLoaded(e) {
+    $("#imageFile").css("color", "green");
+    $('#image_preview').css("display", "block");
+    $('#imagePreview').attr('src', e.target.result);
+    $('#imagePreview').attr('width', '230px');
+    $('#imagePreview').attr('height', '210px');
+  }
+  ;
+
+</script>

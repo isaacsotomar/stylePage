@@ -1,0 +1,60 @@
+<section class="row featured-post-carousel">
+<center>
+    <div class="item post">
+      <%= image_tag "img-01.png", :alt => "", :title => "", :class=>"img-responsive main-bg"%>
+    </div>
+  </center>
+</section>
+<section class="row featured-post-carousel">
+    <div class="item post">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <form class="form-horizontal">
+            <center>
+              <%if alert!= nil%>
+              <div class="alert alert-danger" role="alert">
+                <%= alert %>
+              </div>
+              <%end%>
+              <h2 class="post-title">Iniciar sessión</h2>
+            </center>
+            <div class="col-sm-offset-2 col-sm-8">
+              <div class="form-group">
+                <label for="inputEmail1" >Email</label>
+                  <%= f.email_field :email, autofocus: true, :class=>"form-control",   :placeholder=>"Email"%>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword1">Password</label>
+                  <%= f.password_field :password, autocomplete: "off", :class=>"form-control", :placeholder=>"Password"%>
+              </div>
+            </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <% if devise_mapping.rememberable? -%>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end -%>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.submit "Log in", :class=>"btn btn-default" %>
+            </div>
+          </div>
+      </form>
+      <% end %>
+      <div class="field">
+      </div>
+      <div class="field">
+      </div>
+      <div class="actions">
+      </div>
+
+</div>
+</section>

@@ -1,0 +1,109 @@
+<section class="row featured-post-carousel">
+  <center>
+    <div class="item post">
+       <%= image_tag "portada-01.jpg", :alt => "", :title => "", :class=>"img-responsive main-bg"%>
+    </div>
+  </center>
+</section>
+<p id="notice"><%= notice %></p>
+<section class="row content-wrap">
+    <div class="container">
+        <div class="row" id="post-masonry">
+          <article class="col-sm-10 post post-masonry post-format-image">
+              <div class="post-wrapper row">
+                  <div class="featured-content row">
+                      <a href="single.html">
+                        <!--  IMAGEN DE PUBLICACION-->
+                      </a>
+                  </div>
+                  <div class="post-excerpt row">
+                      <h5 class="post-meta">
+                          <a href="#" class="date">
+                            <!-- FECHA PUBLICACION O ULTIMAEDICION -->
+                          </a>
+                          <span class="post-author">
+                            <!-- <i>by</i>
+                            <a href="#">Mark Sanders</a> -->
+                            <!-- AUTOR O ULTIMO CAMBIO  -->
+                          </span>
+                      </h5>
+                      <h3 class="post-title">
+                        <%= @publication.subtitle %>
+                      </h3>
+                      <p>
+                        <%= @publication.description %>
+                      </p>
+                      <footer class="row">
+                          <h5 class="taxonomy pull-right">Essentia,<i> arte y cultura</i></h5>
+                          <%= link_to new_comment_path(:publication_id => @publication.id)  do%>
+                            <%= image_tag "comment-icon-gray.png", :alt =>"", :title => "", :class=>"img-responsive main-bg"%>
+                          <% end%>
+                      </footer>
+                  </div>
+              </div>
+          </article>
+          </div>
+        </div>
+</section>
+<section class="row content-wrap">
+    <div class="container">
+        <div class="row" id="post-masonry">
+          <% @publication.comments.each do |comment| %>
+          <article class="col-sm-10 post post-masonry post-format-image">
+              <div class="post-wrapper row">
+                  <div class="post-excerpt row">
+                      <h5 class="post-meta">
+                        <label class="col-sm-0 control-label">Email: </label>
+                            <%= comment.email %>
+                          <span class="post-author">
+                            <i>by</i>
+                            <%= comment.nickname %>
+                          </span>
+                      </h5>
+                      <p>
+                        <%= comment.opinion %>
+                      </p>
+                  </div>
+              </div>
+          </article>
+          <% end %>
+          </div>
+        </div>
+</section>
+  <section class="row content-wrap">
+    <article class="col-sm-10 post post-masonry post-format-image">
+
+  <%= link_to new_comment_path(:publication_id => @publication.id)  do%>
+    <button type="submit" class="btn btn-primary btn-sm pull-right"><span>Comentar </span></button>
+  <% end%>
+</article>
+
+</section>
+<style>
+.btn a{
+  background-color: #000000;
+  border-color: #81db34;
+  border: 5px;
+  color:#fff;
+}
+.btn-primary{
+  background-color: #000000;
+  border-color: #81db34;
+  color:#fff;
+  border: 3px;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+  background-color: #81db34;
+  border-left-color: #81db34;
+  border-right-color: #81db34;
+  background-image:  none;
+}
+.btn.btn-primary:hover span, .btn.btn-primary:focus span {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+}
+
+
+</style>

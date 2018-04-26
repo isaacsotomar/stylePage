@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RevistaCato</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+
+  <body>
+    <!--  -->
+    <header class="row transparent black header1" data-spy="affix" data-offset-top="0" id="header">
+        <div class="container">
+            <div class="row top-header">
+                <div class="col-sm-2 search-form-col">
+                  <ul class="nav column-menu grey-bg">
+                    <% if user_signed_in? %>
+                      <div class="active dropdown" >
+                        <button class="btn btn-inverse dropdown-toggle" role="button"  id="main-navbar"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="active-page">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <%=current_user.name%>
+                            <%=current_user.last_name%>
+                            <span class="caret"></span>
+                            <i class="dropdown icon"></i>
+                          </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li class="dropdown-header">
+                            <div class="header"><%=current_user.email%></div>
+                          </li>
+                          <li>
+                            <%= link_to  edit_user_registration_path, class: "green item" do %>
+                              Editar Cuenta
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to   destroy_user_session_path,:method => :delete, class: "green item" do %>
+                               Cerrar Sesión
+                            <% end %>
+                          </li>
+                          <li role="separator" class="divider"></li>
+                          <li>
+                            <%= link_to 'Nueva Publicacion', new_publication_path %>
+                          </li>
+
+                        </div>
+                      </div>
+                    <%else%>
+                    <a href="/users/sign_in" class="menu-trigger pull-right">
+                      <span class="active-page">
+                          Iniciar sesion
+                      </span>
+                    </a>
+                  <%end%>
+                </ul>
+              </div>
+              <div class="col-sm-4 logo-col text-center">
+                  <a href="index.html">
+                    <!-- Logoooo -->
+                  </a>
+              </div>
+              <div class="col-sm-4 menu-trigger-col">
+                  <a class="menu-trigger pull-right" href="/">
+                      <span class="active-page">home</span>
+                      <!-- <%= image_tag "menu-align-white.png", :alt => "", :title => ""%>  CUANDO DEN LOS DROPDOWNS-->
+                  </a>
+              </div>
+          </div>
+        </div>
+    </header>
+    <!--  -->
+    <%= yield %>
+  </body>
+
+</html>
