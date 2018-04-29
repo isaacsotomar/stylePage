@@ -10,37 +10,42 @@
       </ul>
     </div>
   <% end %>
-  <form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
-    <div class="col-sm-10">
-      <%= form.text_field :subtitle, id: :publication_subtitle, :class=>"form-control" ,:placeholder=>"Titulo" %>
+  <form>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 control-label">Titulo</label>
+      <div class="col-sm-9">
+        <%= form.text_field :subtitle, id: :publication_subtitle, :class=>"form-control" ,:placeholder=>"Titulo" %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Descripcion</label>
-    <div class="col-sm-10">
-      <%= form.text_area :description, id: :publication_description , :class=>"form-control" ,:placeholder=>"Descripcion", :rows=>"3" %>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 control-label">Descripcion</label>
+      <div class="col-sm-9">
+        <%= form.text_area :description, id: :publication_description , :class=>"form-control" ,:placeholder=>"Descripcion", :rows=>"3" %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Destacado</label>
-    <div class="col-sm-10">
-      <%= form.check_box  :principal, id: :publication_principal %>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 form-check-label control-label">Destacado</label>
+      <div class="col-sm-9">
+        <%= form.check_box  :principal, id: :publication_principal, :class=>"form-check-input"%>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Imagen </label>
-    <%= form.file_field :image, class:"btn btn-default"%>
-    <div id="image_preview" style="display:none"><img id="imagePreview" src=""/></div>
-  </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 control-label">Imagen </label>
+      <div class="col-sm-9">
+        <%= form.file_field :image, class:"btn btn-default"%>
+        <div id="image_preview" style="display:none"><img id="imagePreview" src=""/></div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= form.submit  "Guardar", :class=>"btn btn-default"%>
+    <div class="form-group row float-right">
+      <!--<div>
+        <%= form.submit  "Guardar", :class=>"btn btn-primary"%>
+      </div>-->
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm") do %>
+        <span>Guardar</span>
+      <% end %>
     </div>
-  </div>
-</form>
+  </form>
 <% end %>
 
 <script>
